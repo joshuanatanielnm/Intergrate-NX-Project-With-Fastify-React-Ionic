@@ -1,0 +1,49 @@
+{
+  "npmScope": "first-project",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "MDMwOTQxZDQtZTNmZi00NWZlLTllOGItZTA2ODdmMTQyMDVkfHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "anti-food-waste-app": {
+      "tags": []
+    },
+    "anti-food-waste-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["anti-food-waste-app"]
+    },
+    "api": {
+      "tags": []
+    },
+    "cms": {
+      "tags": []
+    },
+    "cms-e2e": {
+      "tags": [],
+      "implicitDependencies": ["cms"]
+    }
+  }
+}

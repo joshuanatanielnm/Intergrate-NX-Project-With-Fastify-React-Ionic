@@ -1,0 +1,7 @@
+{
+  "name": "anti-food-waste-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
