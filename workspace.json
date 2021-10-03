@@ -8,9 +8,7 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/anti-food-waste-app",
             "index": "apps/anti-food-waste-app/src/index.html",
@@ -18,13 +16,10 @@
             "polyfills": "apps/anti-food-waste-app/src/polyfills.ts",
             "tsConfig": "apps/anti-food-waste-app/tsconfig.app.json",
             "assets": [
-              "apps/anti-food-waste-app/src/favicon.ico",
               "apps/anti-food-waste-app/src/assets",
               "apps\\anti-food-waste-app/src/manifest.json"
             ],
-            "styles": [
-              "apps/anti-food-waste-app/src/styles.css"
-            ],
+            "styles": ["apps/anti-food-waste-app/src/styles.css"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -57,7 +52,8 @@
           "executor": "@nrwl/web:dev-server",
           "options": {
             "buildTarget": "anti-food-waste-app:build",
-            "hmr": true
+            "hmr": true,
+            "proxyConfig": "apps/anti-food-waste-app/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -66,11 +62,22 @@
             }
           }
         },
+        "serveAppAndApi": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "nx run api:serve"
+              },
+              {
+                "command": "nx run anti-food-waste-app:serve"
+              }
+            ]
+          }
+        },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": [
               "apps/anti-food-waste-app/**/*.{ts,tsx,js,jsx}"
@@ -79,9 +86,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/anti-food-waste-app"
-          ],
+          "outputs": ["coverage/apps/anti-food-waste-app"],
           "options": {
             "jestConfig": "apps/anti-food-waste-app/jest.config.js",
             "passWithNoTests": true
@@ -189,13 +194,9 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/anti-food-waste-app-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/anti-food-waste-app-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -207,16 +208,12 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
+            "assets": ["apps/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -240,20 +237,14 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/api/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/api/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/api"
-          ],
+          "outputs": ["coverage/apps/api"],
           "options": {
             "jestConfig": "apps/api/jest.config.js",
             "passWithNoTests": true
@@ -268,22 +259,15 @@
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/cms",
             "index": "apps/cms/src/index.html",
             "main": "apps/cms/src/main.tsx",
             "polyfills": "apps/cms/src/polyfills.ts",
             "tsConfig": "apps/cms/tsconfig.app.json",
-            "assets": [
-              "apps/cms/src/favicon.ico",
-              "apps/cms/src/assets"
-            ],
-            "styles": [
-              "apps/cms/src/styles.scss"
-            ],
+            "assets": ["apps/cms/src/favicon.ico", "apps/cms/src/assets"],
+            "styles": ["apps/cms/src/styles.scss"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -328,20 +312,14 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/cms/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["apps/cms/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/cms"
-          ],
+          "outputs": ["coverage/apps/cms"],
           "options": {
             "jestConfig": "apps/cms/jest.config.js",
             "passWithNoTests": true
@@ -369,13 +347,9 @@
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/cms-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/cms-e2e/**/*.{js,ts}"]
           }
         }
       }
