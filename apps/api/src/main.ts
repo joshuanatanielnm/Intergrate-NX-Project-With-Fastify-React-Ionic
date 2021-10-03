@@ -66,7 +66,7 @@ server.listen({ port: 3333, host: '127.0.0.1' }, (err, address) => {
 });
 
 server.get('/api/', async (request, reply) => {
-  return { hello: 'api detected ' };
+  return { hello: 'api detected' };
 });
 
 server.get('/api/restaurants', async (request, reply) => {
