@@ -1,6 +1,5 @@
-import MessageListItem from '../components/MessageListItem';
-import React, { useState } from 'react';
-import { Message, getMessages } from '../data/messages';
+import './Home.css';
+
 import {
   IonContent,
   IonHeader,
@@ -12,10 +11,34 @@ import {
   IonToolbar,
   useIonViewWillEnter,
 } from '@ionic/react';
-import './Home.css';
+import { Message, getMessages } from '../data/messages';
+import React, { useEffect, useState } from 'react';
+
+import MessageListItem from '../components/MessageListItem';
+import RestaurantCard from '../components/RestaurantCard';
 
 const Home: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [state, setState] = useState([{
+    id: 'first place',
+    image: '/assets/image.jpg',
+    rating: Math.random(),
+    name: 'MCD Juanda',
+    address:
+      'Jl. Raya Pabean No.6, Dabean, Pabean, Kec. Sedati, Kabupaten Sidoarjo, Jawa Timur 61253',
+  }]);
+
+  useEffect(() => {
+    const restaurant = async () => {
+      const response = await fetch('/api/restaurants');
+      const restaurants = await response.json();
+
+      setState(restaurants);
+    };
+
+    restaurant();
+  }, []);
+
 
   useIonViewWillEnter(() => {
     const msgs = getMessages();
@@ -46,12 +69,11 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <h1>Welcome to anti-food-waste-app!</h1>
-        <IonList>
-          {messages.map((m) => (
-            <MessageListItem key={m.id} message={m} />
-          ))}
-        </IonList>
+        <h1>Anti Food Waste</h1>
+
+        {state.map((v) => {
+          return <RestaurantCard key={v.id} data={v} />;
+        })}
       </IonContent>
     </IonPage>
   );
