@@ -1,5 +1,7 @@
+import { IncomingMessage, Server, ServerResponse } from 'http';
 import fastify, { FastifyInstance, RouteShorthandOptions } from 'fastify';
-import { Server, IncomingMessage, ServerResponse } from 'http';
+
+import { getAllRestaurant } from './app/restaurant.repository';
 
 // Create an http server. We pass the relevant typings for our http version used.
 // By passing types we get correctly typed access to the underlying http objects in routes.
@@ -55,10 +57,18 @@ server.post<{
 });
 
 // Start your server
-server.listen({ port: 8080, host: '0.0.0.0' }, (err, address) => {
+server.listen({ port: 3333, host: '127.0.0.1' }, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(0);
   }
   console.log(`Server listening at ${address}`);
+});
+
+server.get('/api/', async (request, reply) => {
+  return { hello: 'api detected ' };
+});
+
+server.get('/api/restaurants', async (request, reply) => {
+  reply.send(getAllRestaurant());
 });
