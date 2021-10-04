@@ -20,9 +20,8 @@ interface RestaurantCardProps {
 }
 
 const RestaurantCard = (props: RestaurantCardProps) => {
-  console.log(props)
   return (
-    <IonItem>
+    <IonItem routerLink={`/restaurant/${props.data.id}`}>
       <IonCard>
         <img src={props.data.image} alt={props.data.id} />
         <IonCardHeader>
